@@ -1,6 +1,6 @@
 const tododata = [
   {
-    title: 'this is test todo',
+    title: 'learn backend configuration',
     added: '2019-05-02',
     completeted: false,
     id: 1
