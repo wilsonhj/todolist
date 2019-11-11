@@ -1,5 +1,4 @@
-const todoApp = new TodoController();
-
+let todoApp = null;
 $(document).ready(startApp);
 
 function startApp(){
