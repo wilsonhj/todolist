@@ -1,8 +1,11 @@
 class TodoController {
-  constructor(){
-
+  constructor( appDomElement ){
+    this.domElements = {
+      container: $(appDomElement)
+    }
   }
   render(){
-    
+
   }
 }
+
