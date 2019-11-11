@@ -1,14 +1,32 @@
 class TodoController {
   constructor( appDomElement ){
+    this.processTodoList = this.processTodoList.bind(this);
     this.domElements = {
       container: $(appDomElement),
       title: null,
       footer: null
     }
     this.view = 'list';
+    this.loadTodoList();
+  }
+  loadTodoList(){
+    let ajaxOptions = {
+      'url': './data/todoread.json',
+      'dataType': 'json',
+      'method': 'get',
+      'success': this.processTodoList
+    }
+    $.ajax( ajaxOptions );
+  }
+  processTodoList(data){
+    console.log(data);
   }
   view_list(){
     return("list");
+  }
+  renderCurrentView(){
+    let currentViewMethod = 'view_' + this.view;
+    this.domElements.centerContainer.append( this[currentViewMethod] );
   }
   render(){
     this.domElements.title = $("<h1>", {
@@ -18,12 +36,11 @@ class TodoController {
     this.domElements.centerContainer = $("<div>", {
       class: 'centerContents'
     });
-    let currentViewMethod = 'view_' + this.view;
-    this.domElements.centerContainer.append( this[currentViewMethod] );
+    this.renderCurrentView();
     this.domElements.footer = $("<footer>", {
       class: 'footer',
       text: 'footer'
-    }).addClass('footer');
+    })
     this.domElements.container.append(
       this.domElements.title,
       this.domElements.centerContainer,
