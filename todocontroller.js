@@ -6,6 +6,7 @@ class TodoController {
       title: null,
       footer: null
     }
+    this.items = [];
     this.view = 'list';
     this.loadTodoList();
   }
@@ -19,7 +20,12 @@ class TodoController {
     $.ajax( ajaxOptions );
   }
   processTodoList(data){
-    console.log(data);
+    for( let todoIndex = 0; todoIndex < data.length; todoIndex++){
+      let newItem = new TodoItem( data[todoIndex] );
+      this.items.push( newItem );
+      let todoItemDom = newItem.renderList();
+      this.domElements.centerContainer.append(todoItemDom);
+    }
   }
   view_list(){
     return("list");
