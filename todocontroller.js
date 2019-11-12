@@ -12,7 +12,7 @@ class TodoController {
   }
   loadTodoList(){
     let ajaxOptions = {
-      'url': './data/todoread.json',
+      'url': './api/gettodoitems.php',
       'dataType': 'json',
       'method': 'get',
       'success': this.processTodoList
